@@ -109,7 +109,9 @@ void Widget::on_pushButton_DENGYU_clicked()
 {
     in=ui->lineEdit->text();//获取表达式
     std::string expr = in.toStdString();
-    int ans = evaluate(expr);
+
+    double ans = evaluate(expr);
+    std::cout<<"ans : "<<ans<<"\n";
     expr = std::to_string(ans);
     ui->lineEdit->setText(QString::fromStdString(expr));
 }

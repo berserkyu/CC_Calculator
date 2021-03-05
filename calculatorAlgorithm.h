@@ -10,7 +10,7 @@ int precedence(char op) {
 	return 0;
 }
 
-int applyOp(int a, int b, char op) {
+double applyOp(double a, double b, char op) {
 	switch (op) {
 	case '+':
 		return a + b;
@@ -24,60 +24,150 @@ int applyOp(int a, int b, char op) {
         return 0;
 	}
 }
+double evaluate(string tokens) {
+    bool valueTaken = false;
+    int n = tokens.size();
+    //扫描指针
+    int i=0;
+    //当前所扫描数值
+    double curVal = 0;
+    //存储操作数
+    stack <double> values;
+    //存储操作符
+    stack <double> ops;
+    //使用布尔值来判断当前读取数值是否为负
+    bool neg=false;
+    while (i<n) {
+        //为了方便增减 使用switch来判断单目运算符
+        //此处删除了空白字符的判断 因为由前端界面生成的字符串可以保证不含空白字符
+        std::cout<<"\n\n entering while loop : "<<tokens[i]<<std::endl;
+        std::cout<<"entering switch"<<std::endl;
+        switch (tokens[i]){
+        case '(':
+                valueTaken=false;
+                ops.push(tokens[i]);
+                i++;
+            break;
+        case ')':
+            while (!ops.empty() && ops.top() != '(') {
+                int val2 = values.top();
+                values.pop();
+                int val1 = values.top();
+                values.pop();
+                char op = ops.top();
+                ops.pop();
+                values.push(applyOp(val1, val2, op));
+            }
+            i++;
+            //此处若ops不为空 则顶部元素必定为 '('
+            if (!ops.empty())
+                ops.pop();
+            break;
+        default:
+            break;
+        }
+        std::cout<<"exited switch"<<std::endl;
+        std::cout<<"entering numeric"<<std::endl;
 
-int evaluate(string tokens) {
-	int i;
-	stack <int> values;
-	stack <char> ops;
-    for (i = 0; i < tokens.length(); i++) {
-		if (tokens[i] == ' ')
-			continue;
-		else if (tokens[i] == '(') {
-            ops.push(tokens[i]);
-		}
-		else if (isdigit(tokens[i])) {
-			int val = 0;
-			while (i < tokens.length() && isdigit(tokens[i])) {
-				val = (val * 10) + (tokens[i] - '0');
-				i++;
-			}
-			values.push(val);
-			i--;
-		}
-		else if (tokens[i] == ')') {
-			while (!ops.empty() && ops.top() != '(') {
-				int val2 = values.top();
-				values.pop();
-				int val1 = values.top();
-				values.pop();
-				char op = ops.top();
-				ops.pop();
-				values.push(applyOp(val1, val2, op));
-			}
-			if (!ops.empty())
-				ops.pop();
-		}
-		else {
-			while (!ops.empty() && precedence(ops.top()) >= precedence(tokens[i])) {
-				int val2 = values.top();
-				values.pop();
-				int val1 = values.top();
-				values.pop();
-				char op = ops.top();
-				ops.pop();
-				values.push(applyOp(val1, val2, op));
-			}
-			ops.push(tokens[i]);
-		}
+
+        //由于switch不接受布尔值 数值扫描放到此处处理
+        //布尔值 用以判断是否
+        valueTaken = false;
+        while(i<n && isdigit(tokens[i])){
+            valueTaken = true;
+            curVal = curVal*10 + (tokens[i]-'0');
+            i++;
+        }
+        std::cout<<"exited numeric"<<std::endl;
+        std::cout<<"entering floats"<<std::endl;
+        //扫描完整数部分，判断是否为浮点数
+        if(tokens[i]=='.'){
+            i++;
+            //扫描浮点数
+            //deno是为了将数字放到正确的小数位上的分母
+            double deno = 10.0;
+            while(i<n && isdigit(tokens[i])){
+                curVal = curVal + (tokens[i]-'0')/deno;
+                //逐渐往小数后方移动
+                deno *= 10;
+                i++;
+            }
+        }
+        std::cout<<"exited floats"<<std::endl;
+        //此时扫描数值完毕 将数值入栈
+        if(valueTaken){
+             std::cout<<"value taken : "<<(neg?-curVal:curVal)<<std::endl;
+             values.push(neg?-curVal:curVal);
+        }
+        curVal=0;
+        neg = false;
+        std::cout<<"entering binary operators"<<std::endl;
+        //接下来处理双目操作符
+        if (i < n && tokens[i] != ' ') {
+              //-号代表接下来处理的数值是负的
+              if (tokens[i] == '-') {
+                  neg = true;
+                  if(valueTaken){
+                      ops.push('+');
+                  }
+                  i++;
+                  continue;
+              }
+              //如果当前操作符栈为空 或是当前操作符的优先级大于等于栈顶的操作符
+              if (ops.empty() || precedence(ops.top()) <= precedence(tokens[i])) {
+                  //直接入栈，因为用neg代表接下来的值是否为负，故需将减法符号转换为 +加法符号
+                  ops.push(tokens[i] == '-' ? '+' : tokens[i]);
+                  std::cout<<"pushed ops : "<<(tokens[i] == '-' ? '+' : tokens[i])<<" size : "<<ops.size()<<std::endl;
+              }
+              //若栈不为空 且当前操作符的优先级严格小于栈顶元素优先级
+              else {
+                  //则以操作符栈顶的操作符来处理操作数栈顶的两个数值
+                  char op = ops.top();
+                  ops.pop();
+                  std::cout<<"popped ops : "<<op<<std::endl;
+                  //若此处操作数栈没有两个元素，则必定是输入字符串有误，报错
+                  double b = values.top();
+                  values.pop();
+                  double a = values.top();
+                  values.pop();
+                  //opreate 根据操作符对两个操作数进行计算
+                  double t =applyOp(a, b,op);
+                  //将得出的结果推入操作数栈
+                  values.push(t);
+                  //将刚才的当前操作符入栈
+                  std::cout<<"pushed ops : "<<(tokens[i] == '-' ? '+' : tokens[i]) <<" size : "<<ops.size()<<std::endl;
+                  ops.push(tokens[i] == '-' ? '+' : tokens[i]);
+              }
+              i++;
+        }
+        std::cout<<"exited binary operators"<<std::endl;
+        std::cout<<"hey"<<std::endl;
 	}
+    std::cout<<"exited while loop"<<std::endl;
+
+    std::cout<<"elements in values stack : ";
+    std::stack<double> t = values;
+    while(!t.empty()){
+        std::cout<<t.top()<<"  ";
+        t.pop();
+    }
+    std::cout<<"\n"<<ops.size()<< "- elements in ops stack : ";
+    t = ops;
+    while(!t.empty()){
+        std::cout<<t.top()<<"  ";
+        t.pop();
+    }
+    std::cout<<"\nexecuting remainings"<<std::endl;
 	while (!ops.empty()) {
-		int val2 = values.top();
+        double val2 = values.top();
 		values.pop();
-		int val1 = values.top();
+        if(values.empty()) std::cout<<"empty stack"<<std::endl;
+        double val1 = values.top();
 		values.pop();
 		char op = ops.top();
 		ops.pop();
+        std::cout<<val1<<" "<<op<<" "<<val2<<" = "<<applyOp(val1, val2, op)<<std::endl;
 		values.push(applyOp(val1, val2, op));
 	}
-	return values.top();
+    return (values.empty()?0:values.top());
 }

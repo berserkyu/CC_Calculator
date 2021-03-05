@@ -19,45 +19,45 @@ public:
     void m_init();//初始化
 
 private slots:
-    void on_pushButton_clicked();
+    void on_pushButton_ZERO_clicked();
 
-    void on_pushButton_2_clicked();
+    void on_pushButton_ONE_clicked();
 
-    void on_pushButton_3_clicked();
+    void on_pushButton_TWO_clicked();
 
-    void on_pushButton_4_clicked();
+    void on_pushButton_THREE_clicked();
 
-    void on_pushButton_5_clicked();
+    void on_pushButton_FOUR_clicked();
 
-    void on_pushButton_6_clicked();
+    void on_pushButton_FIVE_clicked();
 
-    void on_pushButton_7_clicked();
+    void on_pushButton_SIX_clicked();
 
-    void on_pushButton_8_clicked();
+    void on_pushButton_SEVEN_clicked();
 
-    void on_pushButton_9_clicked();
+    void on_pushButton_EIGHT_clicked();
 
-    void on_pushButton_10_clicked();
+    void on_pushButton_NINE_clicked();
 
-    void on_pushButton_11_clicked();
+    void on_pushButton_DOT_clicked();
 
-    void on_pushButton_12_clicked();
+    void on_pushButton_DENGYU_clicked();
 
-    void on_pushButton_13_clicked();
+    void on_pushButton_JIA_clicked();
 
-    void on_pushButton_14_clicked();
+    void on_pushButton_JIAN_clicked();
 
-    void on_pushButton_15_clicked();
+    void on_pushButton_CHENG_clicked();
 
-    void on_pushButton_20_clicked();
+    void on_pushButton_CHU_clicked();
 
-    void on_pushButton_18_clicked();
+    void on_pushButton_P1_clicked();
 
-    void on_pushButton_19_clicked();
+    void on_pushButton_P2_clicked();
 
-    void on_pushButton_16_clicked();
+    void on_pushButton_AC_clicked();
 
-    void on_pushButton_17_clicked();
+    void on_pushButton_DEL_clicked();
 
 private:
     Ui::Widget *ui;

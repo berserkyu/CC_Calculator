@@ -2,6 +2,8 @@
 #include "ui_widget.h"
 #include <QDebug>
 #include <iostream>
+#include "calculatorAlgorithm.h"
+
 Widget::Widget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Widget)
@@ -103,124 +105,125 @@ void Widget::m_init()
 }
 
 
-void Widget::on_pushButton_clicked()
+void Widget::on_pushButton_DENGYU_clicked()
 {
     in=ui->lineEdit->text();//获取表达式
-    getChar();
-    ui->lineEdit->clear();//清空文本编辑框
-    m_init();
+    std::string expr = in.toStdString();
+    int ans = evaluate(expr);
+    expr = std::to_string(ans);
+    ui->lineEdit->setText(QString::fromStdString(expr));
 }
 
-void Widget::on_pushButton_2_clicked()
+void Widget::on_pushButton_ZERO_clicked()
 {
     QString str=ui->lineEdit->text();
     ui->lineEdit->setText(QString("%1%2").arg(str).arg(0));
 }
 
-void Widget::on_pushButton_3_clicked()
+void Widget::on_pushButton_ONE_clicked()
 {
     QString str=ui->lineEdit->text();
     ui->lineEdit->setText(QString("%1%2").arg(str).arg(1));
 }
 
-void Widget::on_pushButton_4_clicked()
+void Widget::on_pushButton_TWO_clicked()
 {
     QString str=ui->lineEdit->text();
     ui->lineEdit->setText(QString("%1%2").arg(str).arg(2));
 }
 
-void Widget::on_pushButton_5_clicked()
+void Widget::on_pushButton_THREE_clicked()
 {
     QString str=ui->lineEdit->text();
     ui->lineEdit->setText(QString("%1%2").arg(str).arg(3));
 }
 
-void Widget::on_pushButton_6_clicked()
+void Widget::on_pushButton_FOUR_clicked()
 {
     QString str=ui->lineEdit->text();
     ui->lineEdit->setText(QString("%1%2").arg(str).arg(4));
 }
 
-void Widget::on_pushButton_7_clicked()
+void Widget::on_pushButton_FIVE_clicked()
 {
     QString str=ui->lineEdit->text();
     ui->lineEdit->setText(QString("%1%2").arg(str).arg(5));
 }
 
-void Widget::on_pushButton_8_clicked()
+void Widget::on_pushButton_SIX_clicked()
 {
     QString str=ui->lineEdit->text();
     ui->lineEdit->setText(QString("%1%2").arg(str).arg(6));
 }
 
-void Widget::on_pushButton_9_clicked()
+void Widget::on_pushButton_SEVEN_clicked()
 {
     QString str=ui->lineEdit->text();
     ui->lineEdit->setText(QString("%1%2").arg(str).arg(7));
 }
 
-void Widget::on_pushButton_10_clicked()
+void Widget::on_pushButton_EIGHT_clicked()
 {
     QString str=ui->lineEdit->text();
     ui->lineEdit->setText(QString("%1%2").arg(str).arg(8));
 }
 
-void Widget::on_pushButton_11_clicked()
+void Widget::on_pushButton_NINE_clicked()
 {
     QString str=ui->lineEdit->text();
     ui->lineEdit->setText(QString("%1%2").arg(str).arg(9));
 }
 
-void Widget::on_pushButton_12_clicked()
+void Widget::on_pushButton_JIA_clicked()
 {
     QString str=ui->lineEdit->text();
     ui->lineEdit->setText(QString("%1%2").arg(str).arg("+"));
 }
 
-void Widget::on_pushButton_13_clicked()
+void Widget::on_pushButton_JIAN_clicked()
 {
     QString str=ui->lineEdit->text();
     ui->lineEdit->setText(QString("%1%2").arg(str).arg("-"));
 }
 
-void Widget::on_pushButton_14_clicked()
+void Widget::on_pushButton_CHENG_clicked()
 {
     QString str=ui->lineEdit->text();
     ui->lineEdit->setText(QString("%1%2").arg(str).arg("*"));
 }
 
-void Widget::on_pushButton_15_clicked()
+void Widget::on_pushButton_CHU_clicked()
 {
     QString str=ui->lineEdit->text();
     ui->lineEdit->setText(QString("%1%2").arg(str).arg("/"));
 }
 
-void Widget::on_pushButton_20_clicked()
+void Widget::on_pushButton_DOT_clicked()
 {
     QString str=ui->lineEdit->text();
     ui->lineEdit->setText(QString("%1%2").arg(str).arg("."));
 }
 
-void Widget::on_pushButton_18_clicked()
+void Widget::on_pushButton_P2_clicked()
 {
     QString str=ui->lineEdit->text();
     ui->lineEdit->setText(QString("%1%2").arg(str).arg("("));
 }
 
-void Widget::on_pushButton_19_clicked()
+void Widget::on_pushButton_P1_clicked()
 {
     QString str=ui->lineEdit->text();
     ui->lineEdit->setText(QString("%1%2").arg(str).arg(")"));
 }
 
-void Widget::on_pushButton_16_clicked()
+void Widget::on_pushButton_AC_clicked()
 {
     //清空所有内容，并初始化
     ui->lineEdit->clear();
     m_init();
 }
 
-void Widget::on_pushButton_17_clicked()
+void Widget::on_pushButton_DEL_clicked()
 {
     //退格删除一个字符
     ui->lineEdit->backspace();

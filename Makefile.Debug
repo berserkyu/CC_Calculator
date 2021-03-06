@@ -486,6 +486,8 @@ debug/widget.o: widget.cpp widget.h \
 		C:/QtProject/5.9.9/mingw53_32/include/QtWidgets/qtabbar.h \
 		C:/QtProject/5.9.9/mingw53_32/include/QtWidgets/qtabwidget.h \
 		C:/QtProject/5.9.9/mingw53_32/include/QtWidgets/qrubberband.h \
+		C:/QtProject/5.9.9/mingw53_32/include/QtWidgets/QLabel \
+		C:/QtProject/5.9.9/mingw53_32/include/QtWidgets/qlabel.h \
 		C:/QtProject/5.9.9/mingw53_32/include/QtWidgets/QLineEdit \
 		C:/QtProject/5.9.9/mingw53_32/include/QtWidgets/qlineedit.h \
 		C:/QtProject/5.9.9/mingw53_32/include/QtGui/qtextcursor.h \
@@ -495,6 +497,10 @@ debug/widget.o: widget.cpp widget.h \
 		C:/QtProject/5.9.9/mingw53_32/include/QtWidgets/QPushButton \
 		C:/QtProject/5.9.9/mingw53_32/include/QtWidgets/qpushbutton.h \
 		C:/QtProject/5.9.9/mingw53_32/include/QtWidgets/qabstractbutton.h \
+		C:/QtProject/5.9.9/mingw53_32/include/QtWidgets/QTextBrowser \
+		C:/QtProject/5.9.9/mingw53_32/include/QtWidgets/qtextbrowser.h \
+		C:/QtProject/5.9.9/mingw53_32/include/QtWidgets/qtextedit.h \
+		C:/QtProject/5.9.9/mingw53_32/include/QtGui/qtextdocument.h \
 		C:/QtProject/5.9.9/mingw53_32/include/QtWidgets/QVBoxLayout \
 		C:/QtProject/5.9.9/mingw53_32/include/QtCore/QDebug \
 		C:/QtProject/5.9.9/mingw53_32/include/QtWidgets/QMessageBox \

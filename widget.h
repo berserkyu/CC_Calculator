@@ -19,6 +19,8 @@ public:
     void m_init();//初始化
 
 private slots:
+    void checkIfGettingNewInput();
+
     void on_pushButton_ZERO_clicked();
 
     void on_pushButton_ONE_clicked();
@@ -63,7 +65,24 @@ private slots:
 
     void on_pushButton_index_clicked();
 
+    void on_pushButton_sine_clicked();
+
+    void on_pushButton_cosine_clicked();
+
+    void on_pushButton_tangent_clicked();
+
+    void on_pushButton_PI_clicked();
+
+    void on_pushButton_E_clicked();
+
+    void on_pushButton_naturalLog_clicked();
+
+    void on_pushButton_log10_clicked();
+
+    void on_pushButton_ANS_clicked();
+
 private:
+    bool gettingNewInput;
     Ui::Widget *ui;
     QString in;//输入的表达式
     QByteArray ba;//输入表达式转换为字节数组

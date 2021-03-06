@@ -5,6 +5,18 @@
 #include <iostream>
 #include "calculatorAlgorithm.h"
 
+std::string toProcess = "",storedAns="";
+
+void Widget::checkIfGettingNewInput(){
+    if(gettingNewInput){
+        ui->lineEdit->clear();
+        toProcess = "";
+        Widget::m_init();
+    }
+    gettingNewInput = false;
+}
+
+
 Widget::Widget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Widget)
@@ -25,6 +37,8 @@ void Widget::getChar()
 {
     ba=in.toLatin1();
 }
+
+
 
 void Widget::getSuffix()
 {
@@ -109,118 +123,162 @@ void Widget::m_init()
 void Widget::on_pushButton_DENGYU_clicked()
 {
     in=ui->lineEdit->text();//获取表达式
-
-        std::string expr = in.toStdString();
-        if(!validExpression(expr)){
+        if(!validExpression(toProcess)){
             QMessageBox::warning(this,"ERROR","Invalid Expression");
         }else{
-            double ans = evaluate(expr);
+            double ans = evaluate(toProcess);
             std::cout<<"ans : "<<ans<<"\n";
-            expr = std::to_string(ans);
+            std::string expr = std::to_string(ans);
+            storedAns = expr;
             ui->lineEdit->setText(QString::fromStdString(expr));
+            gettingNewInput = true;
         }
 }
 
 void Widget::on_pushButton_ZERO_clicked()
 {
+    gettingNewInput = false;
+    checkIfGettingNewInput();
     QString str=ui->lineEdit->text();
     ui->lineEdit->setText(QString("%1%2").arg(str).arg(0));
+    toProcess += '0';
 }
 
 void Widget::on_pushButton_ONE_clicked()
 {
+    gettingNewInput = false;
+    checkIfGettingNewInput();
     QString str=ui->lineEdit->text();
     ui->lineEdit->setText(QString("%1%2").arg(str).arg(1));
+    toProcess += '1';
 }
 
 void Widget::on_pushButton_TWO_clicked()
 {
+    gettingNewInput = false;
+    checkIfGettingNewInput();
     QString str=ui->lineEdit->text();
     ui->lineEdit->setText(QString("%1%2").arg(str).arg(2));
+    toProcess += '2';
 }
 
 void Widget::on_pushButton_THREE_clicked()
 {
+    gettingNewInput = false;
+    checkIfGettingNewInput();
     QString str=ui->lineEdit->text();
     ui->lineEdit->setText(QString("%1%2").arg(str).arg(3));
+    toProcess += '3';
 }
 
 void Widget::on_pushButton_FOUR_clicked()
 {
+    gettingNewInput = false;
+    checkIfGettingNewInput();
     QString str=ui->lineEdit->text();
     ui->lineEdit->setText(QString("%1%2").arg(str).arg(4));
+    toProcess += '4';
 }
 
 void Widget::on_pushButton_FIVE_clicked()
 {
+    gettingNewInput = false;
+    checkIfGettingNewInput();
     QString str=ui->lineEdit->text();
     ui->lineEdit->setText(QString("%1%2").arg(str).arg(5));
+    toProcess += '5';
 }
 
 void Widget::on_pushButton_SIX_clicked()
 {
+    gettingNewInput = false;
+    checkIfGettingNewInput();
     QString str=ui->lineEdit->text();
     ui->lineEdit->setText(QString("%1%2").arg(str).arg(6));
+    toProcess += '6';
 }
 
 void Widget::on_pushButton_SEVEN_clicked()
 {
+    gettingNewInput = false;
+    checkIfGettingNewInput();
     QString str=ui->lineEdit->text();
     ui->lineEdit->setText(QString("%1%2").arg(str).arg(7));
+    toProcess += '7';
 }
 
 void Widget::on_pushButton_EIGHT_clicked()
 {
+    gettingNewInput = false;
+    checkIfGettingNewInput();
     QString str=ui->lineEdit->text();
     ui->lineEdit->setText(QString("%1%2").arg(str).arg(8));
+    toProcess += '8';
 }
 
 void Widget::on_pushButton_NINE_clicked()
 {
+    gettingNewInput = false;
+    checkIfGettingNewInput();
     QString str=ui->lineEdit->text();
     ui->lineEdit->setText(QString("%1%2").arg(str).arg(9));
+    toProcess += '9';
 }
 
 void Widget::on_pushButton_JIA_clicked()
 {
+    gettingNewInput = false;
     QString str=ui->lineEdit->text();
     ui->lineEdit->setText(QString("%1%2").arg(str).arg("+"));
+    toProcess += '+';
 }
 
 void Widget::on_pushButton_JIAN_clicked()
 {
+    gettingNewInput = false;
     QString str=ui->lineEdit->text();
     ui->lineEdit->setText(QString("%1%2").arg(str).arg("-"));
+    toProcess += '-';
 }
 
 void Widget::on_pushButton_CHENG_clicked()
 {
+    gettingNewInput = false;
     QString str=ui->lineEdit->text();
     ui->lineEdit->setText(QString("%1%2").arg(str).arg("*"));
+    toProcess += '*';
 }
 
 void Widget::on_pushButton_CHU_clicked()
 {
+    gettingNewInput = false;
     QString str=ui->lineEdit->text();
     ui->lineEdit->setText(QString("%1%2").arg(str).arg("/"));
+    toProcess += '/';
 }
 
 void Widget::on_pushButton_DOT_clicked()
 {
+    gettingNewInput = false;
     QString str=ui->lineEdit->text();
     ui->lineEdit->setText(QString("%1%2").arg(str).arg("."));
+    toProcess += '.';
 }
 
 void Widget::on_pushButton_P2_clicked()
 {
+    gettingNewInput = false;
     QString str=ui->lineEdit->text();
     ui->lineEdit->setText(QString("%1%2").arg(str).arg("("));
+    toProcess += '(';
 }
 
 void Widget::on_pushButton_P1_clicked()
 {
+    gettingNewInput = false;
     QString str=ui->lineEdit->text();
     ui->lineEdit->setText(QString("%1%2").arg(str).arg(")"));
+    toProcess += ')';
 }
 
 void Widget::on_pushButton_AC_clicked()
@@ -228,22 +286,94 @@ void Widget::on_pushButton_AC_clicked()
     //清空所有内容，并初始化
     ui->lineEdit->clear();
     m_init();
+    toProcess = "";
+    gettingNewInput = true;
 }
 
 void Widget::on_pushButton_DEL_clicked()
 {
     //退格删除一个字符
     ui->lineEdit->backspace();
+    toProcess = toProcess.substr(0,toProcess.size()-1);
 }
 
 void Widget::on_pushButton_Sqrt_clicked()
 {
+    checkIfGettingNewInput();
+    gettingNewInput = false;
     QString str = ui->lineEdit->text();
     ui->lineEdit->setText(QString("%1%2").arg(str).arg("√("));
+    toProcess += "Q(";
 }
 
 void Widget::on_pushButton_index_clicked()
 {
+    gettingNewInput = false;
     QString str = ui->lineEdit->text();
     ui->lineEdit->setText(QString("%1%2").arg(str).arg("^"));
+    toProcess += '^';
+}
+
+void Widget::on_pushButton_sine_clicked()
+{
+    checkIfGettingNewInput();
+    QString str = ui->lineEdit->text();
+    ui->lineEdit->setText(QString("%1%2").arg(str).arg("sin("));
+    toProcess += "S(";
+}
+
+void Widget::on_pushButton_cosine_clicked()
+{
+    checkIfGettingNewInput();
+    QString str = ui->lineEdit->text();
+    ui->lineEdit->setText(QString("%1%2").arg(str).arg("cos("));
+    toProcess += "C(";
+}
+
+void Widget::on_pushButton_tangent_clicked()
+{
+    checkIfGettingNewInput();
+    QString str = ui->lineEdit->text();
+    ui->lineEdit->setText(QString("%1%2").arg(str).arg("tan("));
+    toProcess += "T(";
+}
+
+void Widget::on_pushButton_PI_clicked()
+{
+    checkIfGettingNewInput();
+    QString str = ui->lineEdit->text();
+    ui->lineEdit->setText(QString("%1%2").arg(str).arg("𝛑"));
+    toProcess += "3.14159";
+}
+
+void Widget::on_pushButton_E_clicked()
+{
+    checkIfGettingNewInput();
+    QString str = ui->lineEdit->text();
+    ui->lineEdit->setText(QString("%1%2").arg(str).arg("e"));
+    toProcess += "2.718281";
+}
+
+void Widget::on_pushButton_naturalLog_clicked()
+{
+    checkIfGettingNewInput();
+    QString str = ui->lineEdit->text();
+    ui->lineEdit->setText(QString("%1%2").arg(str).arg("ln("));
+    toProcess += "L(";
+}
+
+void Widget::on_pushButton_log10_clicked()
+{
+    checkIfGettingNewInput();
+    QString str = ui->lineEdit->text();
+    ui->lineEdit->setText(QString("%1%2").arg(str).arg("log("));
+    toProcess += "l(";
+}
+
+void Widget::on_pushButton_ANS_clicked()
+{
+    checkIfGettingNewInput();
+    QString str = ui->lineEdit->text();
+    ui->lineEdit->setText(QString("%1%2").arg(str).arg("ans"));
+    toProcess += storedAns;
 }

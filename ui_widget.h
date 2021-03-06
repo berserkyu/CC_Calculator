@@ -34,6 +34,7 @@ public:
     QPushButton *pushButton_P1;
     QPushButton *pushButton_DEL;
     QPushButton *pushButton_JIA;
+    QPushButton *pushButton_index;
     QHBoxLayout *horizontalLayout_2;
     QPushButton *pushButton_SEVEN;
     QPushButton *pushButton_EIGHT;
@@ -59,7 +60,7 @@ public:
     {
         if (Widget->objectName().isEmpty())
             Widget->setObjectName(QStringLiteral("Widget"));
-        Widget->resize(343, 322);
+        Widget->resize(352, 322);
         QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -126,6 +127,15 @@ public:
 "color: rgb(11, 88, 255);"));
 
         horizontalLayout->addWidget(pushButton_JIA);
+
+        pushButton_index = new QPushButton(layoutWidget);
+        pushButton_index->setObjectName(QStringLiteral("pushButton_index"));
+        pushButton_index->setMinimumSize(QSize(60, 40));
+        pushButton_index->setStyleSheet(QLatin1String("background-color: rgb(220, 220, 220);\n"
+" \n"
+"color: rgb(11, 88, 255);"));
+
+        horizontalLayout->addWidget(pushButton_index);
 
 
         verticalLayout->addLayout(horizontalLayout);
@@ -300,6 +310,7 @@ public:
         pushButton_P1->setText(QApplication::translate("Widget", ")", Q_NULLPTR));
         pushButton_DEL->setText(QApplication::translate("Widget", "<-", Q_NULLPTR));
         pushButton_JIA->setText(QApplication::translate("Widget", "+", Q_NULLPTR));
+        pushButton_index->setText(QApplication::translate("Widget", "^", Q_NULLPTR));
         pushButton_SEVEN->setText(QApplication::translate("Widget", "7", Q_NULLPTR));
         pushButton_EIGHT->setText(QApplication::translate("Widget", "8", Q_NULLPTR));
         pushButton_NINE->setText(QApplication::translate("Widget", "9", Q_NULLPTR));

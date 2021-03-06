@@ -59,6 +59,10 @@ private slots:
 
     void on_pushButton_DEL_clicked();
 
+    void on_pushButton_Sqrt_clicked();
+
+    void on_pushButton_index_clicked();
+
 private:
     Ui::Widget *ui;
     QString in;//输入的表达式

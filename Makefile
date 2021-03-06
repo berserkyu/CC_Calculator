@@ -198,6 +198,7 @@ Makefile: Calc_algorithm.pro C:/QtProject/5.9.9/mingw53_32/mkspecs/win32-g++/qma
 		C:/QtProject/5.9.9/mingw53_32/mkspecs/features/qt_config.prf \
 		C:/QtProject/5.9.9/mingw53_32/mkspecs/win32-g++/qmake.conf \
 		C:/QtProject/5.9.9/mingw53_32/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		C:/QtProject/5.9.9/mingw53_32/mkspecs/features/exclusive_builds.prf \
 		C:/QtProject/5.9.9/mingw53_32/mkspecs/features/toolchain.prf \
 		C:/QtProject/5.9.9/mingw53_32/mkspecs/features/default_pre.prf \
@@ -362,6 +363,7 @@ C:/QtProject/5.9.9/mingw53_32/mkspecs/features/qt_functions.prf:
 C:/QtProject/5.9.9/mingw53_32/mkspecs/features/qt_config.prf:
 C:/QtProject/5.9.9/mingw53_32/mkspecs/win32-g++/qmake.conf:
 C:/QtProject/5.9.9/mingw53_32/mkspecs/features/spec_post.prf:
+.qmake.stash:
 C:/QtProject/5.9.9/mingw53_32/mkspecs/features/exclusive_builds.prf:
 C:/QtProject/5.9.9/mingw53_32/mkspecs/features/toolchain.prf:
 C:/QtProject/5.9.9/mingw53_32/mkspecs/features/default_pre.prf:

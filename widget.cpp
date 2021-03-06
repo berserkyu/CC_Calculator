@@ -109,16 +109,16 @@ void Widget::m_init()
 void Widget::on_pushButton_DENGYU_clicked()
 {
     in=ui->lineEdit->text();//获取表达式
-    try {
-        std::string expr = in.toStdString();
-        double ans = evaluate(expr);
-        std::cout<<"ans : "<<ans<<"\n";
-        expr = std::to_string(ans);
-        ui->lineEdit->setText(QString::fromStdString(expr));
-    }  catch (...) {
-        QMessageBox::warning(this,"ERROR","INVALID EXPRESSION");
-    }
 
+        std::string expr = in.toStdString();
+        if(!validExpression(expr)){
+            QMessageBox::warning(this,"ERROR","Invalid Expression");
+        }else{
+            double ans = evaluate(expr);
+            std::cout<<"ans : "<<ans<<"\n";
+            expr = std::to_string(ans);
+            ui->lineEdit->setText(QString::fromStdString(expr));
+        }
 }
 
 void Widget::on_pushButton_ZERO_clicked()
@@ -234,4 +234,16 @@ void Widget::on_pushButton_DEL_clicked()
 {
     //退格删除一个字符
     ui->lineEdit->backspace();
+}
+
+void Widget::on_pushButton_Sqrt_clicked()
+{
+    QString str = ui->lineEdit->text();
+    ui->lineEdit->setText(QString("%1%2").arg(str).arg("√("));
+}
+
+void Widget::on_pushButton_index_clicked()
+{
+    QString str = ui->lineEdit->text();
+    ui->lineEdit->setText(QString("%1%2").arg(str).arg("^"));
 }

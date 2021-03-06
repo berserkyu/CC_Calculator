@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <cmath>
 #include <stack>
 using namespace std;
 std::string evalBracket(std::string&s,int &i,int n){
@@ -33,8 +34,11 @@ std::string evalBracket(std::string&s,int &i,int n){
 int precedence(char op) {
 	if (op == '+' || op == '-')
 		return 1;
-	if (op == '*' || op == '/')
+    else if (op == '*' || op == '/')
 		return 2;
+    else if(op=='^')
+        return 3;
+
 	return 0;
 }
 
@@ -48,6 +52,8 @@ double applyOp(double a, double b, char op) {
 		return a * b;
 	case '/':
 		return a / b;
+    case '^':
+        return std::pow(a,b);
     default:
         return 0;
 	}
@@ -66,7 +72,7 @@ double evaluate(string tokens) {
     //使用布尔值来判断当前读取数值是否为负
     bool neg=false;
     while (i<n) {
-        //为了方便增减 使用switch来判断单目运算符
+        //使用switch来判断单目运算符
         //此处删除了空白字符的判断 因为由前端界面生成的字符串可以保证不含空白字符
         std::cout<<"\n\n entering while loop : "<<tokens[i]<<std::endl;
         std::cout<<"entering switch"<<std::endl;
@@ -76,7 +82,7 @@ double evaluate(string tokens) {
                 double temp = evaluate(t);
                 std::cout<<"temp : "<<temp<<std::endl;
                 values.push(temp);
-            break;
+            break;  
             }
             default:
                 break;
@@ -113,6 +119,10 @@ double evaluate(string tokens) {
         if(valueTaken){
              std::cout<<"value taken : "<<(neg?-curVal:curVal)<<std::endl;
              values.push(neg?-curVal:curVal);
+        }
+        if(tokens[i]=='('){
+            ops.push('*');
+            continue;
         }
         curVal=0;
         neg = false;

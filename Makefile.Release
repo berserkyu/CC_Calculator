@@ -449,7 +449,57 @@ release/widget.o: widget.cpp widget.h \
 		C:/QtProject/5.9.9/mingw53_32/include/QtCore/QStack \
 		C:/QtProject/5.9.9/mingw53_32/include/QtCore/qstack.h \
 		ui_widget.h \
+		C:/QtProject/5.9.9/mingw53_32/include/QtCore/QVariant \
+		C:/QtProject/5.9.9/mingw53_32/include/QtWidgets/QAction \
+		C:/QtProject/5.9.9/mingw53_32/include/QtWidgets/qaction.h \
+		C:/QtProject/5.9.9/mingw53_32/include/QtGui/qicon.h \
+		C:/QtProject/5.9.9/mingw53_32/include/QtWidgets/qactiongroup.h \
+		C:/QtProject/5.9.9/mingw53_32/include/QtWidgets/QApplication \
+		C:/QtProject/5.9.9/mingw53_32/include/QtWidgets/qapplication.h \
+		C:/QtProject/5.9.9/mingw53_32/include/QtCore/qcoreapplication.h \
+		C:/QtProject/5.9.9/mingw53_32/include/QtCore/qeventloop.h \
+		C:/QtProject/5.9.9/mingw53_32/include/QtWidgets/qdesktopwidget.h \
+		C:/QtProject/5.9.9/mingw53_32/include/QtGui/qguiapplication.h \
+		C:/QtProject/5.9.9/mingw53_32/include/QtGui/qinputmethod.h \
+		C:/QtProject/5.9.9/mingw53_32/include/QtWidgets/QButtonGroup \
+		C:/QtProject/5.9.9/mingw53_32/include/QtWidgets/qbuttongroup.h \
+		C:/QtProject/5.9.9/mingw53_32/include/QtWidgets/QHBoxLayout \
+		C:/QtProject/5.9.9/mingw53_32/include/QtWidgets/qboxlayout.h \
+		C:/QtProject/5.9.9/mingw53_32/include/QtWidgets/qlayout.h \
+		C:/QtProject/5.9.9/mingw53_32/include/QtWidgets/qlayoutitem.h \
+		C:/QtProject/5.9.9/mingw53_32/include/QtWidgets/qgridlayout.h \
+		C:/QtProject/5.9.9/mingw53_32/include/QtWidgets/QHeaderView \
+		C:/QtProject/5.9.9/mingw53_32/include/QtWidgets/qheaderview.h \
+		C:/QtProject/5.9.9/mingw53_32/include/QtWidgets/qabstractitemview.h \
+		C:/QtProject/5.9.9/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
+		C:/QtProject/5.9.9/mingw53_32/include/QtWidgets/qframe.h \
+		C:/QtProject/5.9.9/mingw53_32/include/QtCore/qabstractitemmodel.h \
+		C:/QtProject/5.9.9/mingw53_32/include/QtCore/qitemselectionmodel.h \
+		C:/QtProject/5.9.9/mingw53_32/include/QtWidgets/qabstractitemdelegate.h \
+		C:/QtProject/5.9.9/mingw53_32/include/QtWidgets/qstyleoption.h \
+		C:/QtProject/5.9.9/mingw53_32/include/QtWidgets/qabstractspinbox.h \
+		C:/QtProject/5.9.9/mingw53_32/include/QtGui/qvalidator.h \
+		C:/QtProject/5.9.9/mingw53_32/include/QtCore/qregularexpression.h \
+		C:/QtProject/5.9.9/mingw53_32/include/QtWidgets/qslider.h \
+		C:/QtProject/5.9.9/mingw53_32/include/QtWidgets/qabstractslider.h \
+		C:/QtProject/5.9.9/mingw53_32/include/QtWidgets/qstyle.h \
+		C:/QtProject/5.9.9/mingw53_32/include/QtWidgets/qtabbar.h \
+		C:/QtProject/5.9.9/mingw53_32/include/QtWidgets/qtabwidget.h \
+		C:/QtProject/5.9.9/mingw53_32/include/QtWidgets/qrubberband.h \
+		C:/QtProject/5.9.9/mingw53_32/include/QtWidgets/QLineEdit \
+		C:/QtProject/5.9.9/mingw53_32/include/QtWidgets/qlineedit.h \
+		C:/QtProject/5.9.9/mingw53_32/include/QtGui/qtextcursor.h \
+		C:/QtProject/5.9.9/mingw53_32/include/QtGui/qtextformat.h \
+		C:/QtProject/5.9.9/mingw53_32/include/QtGui/qpen.h \
+		C:/QtProject/5.9.9/mingw53_32/include/QtGui/qtextoption.h \
+		C:/QtProject/5.9.9/mingw53_32/include/QtWidgets/QPushButton \
+		C:/QtProject/5.9.9/mingw53_32/include/QtWidgets/qpushbutton.h \
+		C:/QtProject/5.9.9/mingw53_32/include/QtWidgets/qabstractbutton.h \
+		C:/QtProject/5.9.9/mingw53_32/include/QtWidgets/QVBoxLayout \
 		C:/QtProject/5.9.9/mingw53_32/include/QtCore/QDebug \
+		C:/QtProject/5.9.9/mingw53_32/include/QtWidgets/QMessageBox \
+		C:/QtProject/5.9.9/mingw53_32/include/QtWidgets/qmessagebox.h \
+		C:/QtProject/5.9.9/mingw53_32/include/QtWidgets/qdialog.h \
 		calculatorAlgorithm.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\widget.o widget.cpp
 

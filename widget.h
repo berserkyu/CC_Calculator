@@ -81,6 +81,8 @@ private slots:
 
     void on_pushButton_ANS_clicked();
 
+
+
 private:
     bool gettingNewInput;
     Ui::Widget *ui;

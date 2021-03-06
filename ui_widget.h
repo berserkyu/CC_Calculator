@@ -18,6 +18,7 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpinBox>
 #include <QtWidgets/QTextBrowser>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -68,6 +69,8 @@ public:
     QPushButton *pushButton_tangent;
     QTextBrowser *textBrowser;
     QLabel *Title;
+    QSpinBox *precision;
+    QLabel *Title_2;
 
     void setupUi(QWidget *Widget)
     {
@@ -413,8 +416,11 @@ public:
 
         textBrowser = new QTextBrowser(Widget);
         textBrowser->setObjectName(QStringLiteral("textBrowser"));
-        textBrowser->setEnabled(false);
-        textBrowser->setGeometry(QRect(420, 60, 240, 361));
+        textBrowser->setEnabled(true);
+        textBrowser->setGeometry(QRect(420, 60, 240, 311));
+        textBrowser->setLayoutDirection(Qt::RightToLeft);
+        textBrowser->setAutoFillBackground(false);
+        textBrowser->setStyleSheet(QStringLiteral(""));
         Title = new QLabel(Widget);
         Title->setObjectName(QStringLiteral("Title"));
         Title->setGeometry(QRect(10, 10, 171, 51));
@@ -422,6 +428,17 @@ public:
         font.setFamily(QString::fromUtf8("\346\245\267\344\275\223"));
         font.setPointSize(12);
         Title->setFont(font);
+        precision = new QSpinBox(Widget);
+        precision->setObjectName(QStringLiteral("precision"));
+        precision->setGeometry(QRect(620, 400, 42, 22));
+        precision->setMaximum(6);
+        Title_2 = new QLabel(Widget);
+        Title_2->setObjectName(QStringLiteral("Title_2"));
+        Title_2->setGeometry(QRect(500, 390, 111, 51));
+        QFont font1;
+        font1.setFamily(QString::fromUtf8("\346\245\267\344\275\223"));
+        font1.setPointSize(9);
+        Title_2->setFont(font1);
 
         retranslateUi(Widget);
 
@@ -465,12 +482,19 @@ public:
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">\346\263\250\357\274\232</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">1.\345\217\214\347\233\256\346\223\215\344\275\234\347\254\246\344\270\215\345\205\201\350\256\270\350\277\236\347\273\255\344\275\277\347\224\250\357\274\214\344\276\213 a/-b\345\260\206\344\274\232\346\212\245\351\224\231\357\274\214\350\257\267\350\276\223\345\205\245\344\270\272 a/(-b).</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-"
-                        "indent:0px;\">2.\344\270\211\350\247\222\345\207\275\346\225\260\350\276\223\345\205\245\345\215\225\344\275\215\347\232\206\344\270\272rads.</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", Q_NULLPTR));
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600;\">\346\263\250\357\274\232</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600;\">1.</span><span style=\" font-size:9pt;\">\345\217\214\347\233\256\346\223\215\344\275\234\347\254\246\344\270\215\345\205\201\350\256\270\350\277\236\347\273\255\344\275\277\347\224\250\357\274\214\344\276\213 a/-b\345\260\206\344\274\232\346\212\245\351\224\231\357\274\214\350\257\267\350\276\223\345"
+                        "\205\245\344\270\272 a/(-b)\343\200\202</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600;\">2.</span><span style=\" font-size:9pt;\">\344\270\211\350\247\222\345\207\275\346\225\260\350\276\223\345\205\245\345\215\225\344\275\215\347\232\206\344\270\272rads\343\200\202</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600;\">3.</span><span style=\" font-size:9pt;\">\350\257\267\345\260\275\351\207\217\344\275\277\347\224\250\346\213\254\345\217\267\345\260\206\346\225\260\345\200\274/\345\255\220\350\241\250\350\276\276\345\274\217\351\232\224\345\274\200\343\200\202</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600;\">4</sp"
+                        "an><span style=\" font-size:9pt;\">.\347\250\213\345\272\217\344\270\215\346\216\245\345\217\227+\345\217\267\344\270\272\345\215\225\347\233\256\350\277\220\347\256\227\347\254\246\357\274\214\346\225\260\345\200\274\351\273\230\350\256\244\344\270\272\346\255\243\343\200\202</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600;\">5.</span><span style=\" font-size:9pt;\">-a^b\344\274\232\350\242\253\347\250\213\345\272\217\350\247\243\351\207\212\344\270\272(-b)^a , \350\213\245\350\277\231\344\270\215\346\230\257\346\202\250\346\203\263\350\246\201\347\232\204\346\225\210\346\236\234\357\274\214</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt;\">\345\260\261\350\276\223\345\205\245 -(a^b)\343\200\202</span></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px;"
+                        " margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:9pt;\"><br /></p></body></html>", Q_NULLPTR));
         Title->setText(QApplication::translate("Widget", "\347\256\200\346\230\223\350\256\241\347\256\227\345\231\250", Q_NULLPTR));
+        Title_2->setText(QApplication::translate("Widget", "\346\265\256\347\202\271\346\225\260\347\262\276\345\272\246\350\256\276\347\275\256", Q_NULLPTR));
     } // retranslateUi
 
 };

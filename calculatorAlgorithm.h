@@ -101,7 +101,7 @@ double evaluate(string tokens) {
             case '(':{
                 std::string t = evalBracket(tokens,i,n);
                 double temp = evaluate(t);
-                if(isdigit(tokens[i])) ops.push('*');
+                if(isdigit(tokens[i]) || tokens[i]=='(') ops.push('*');
                 values.push(neg?-temp:temp);
                 neg = false;
             break;
@@ -109,6 +109,9 @@ double evaluate(string tokens) {
         case 'Q':case 'S':case 'C':case 'T':case 'l':case 'L':{
                char op = tokens[i];
                i++;
+               if(valueTaken){
+                   ops.push('*');
+               }
                std::string t = evalBracket(tokens,i,n);
                double temp = evaluate(t);
                temp = processTemp(op,temp);
@@ -156,6 +159,7 @@ double evaluate(string tokens) {
         neg = false;
         //接下来处理双目操作符
         if(!precedence(tokens[i])) continue;
+        valueTaken = false;
         if (i < n && tokens[i] != ' ') {
               //-号代表接下来处理的数值是负的
               if (tokens[i] == '-') {
@@ -164,6 +168,7 @@ double evaluate(string tokens) {
                       i++;
                       continue;
                   }
+
               }
               //如果当前操作符栈为空 或是当前操作符的优先级大于等于栈顶的操作符
               if (ops.empty() || precedence(ops.top()) <= precedence(tokens[i])) {
@@ -193,6 +198,7 @@ double evaluate(string tokens) {
               i++;
         }
 	}
+    //处理栈里剩余的操作数和操作符
 	while (!ops.empty()) {
         double val2 = values.top();
 		values.pop();
@@ -202,11 +208,14 @@ double evaluate(string tokens) {
 		ops.pop();
 		values.push(applyOp(val1, val2, op));
 	}
+    //若操作数栈为空则代表表达式为空 返回0
     return (values.empty()?0:values.top());
 }
-
+//检测表达式是否合法
 bool validExpression(std::string expr){
     int cnt =0;
+    int n = expr.size();
+    if(n && expr[0]!='-' && precedence(expr[0])) return false;
     for(char c:expr){
         if(c=='(') cnt++;
         else if(c==')'){
@@ -214,7 +223,7 @@ bool validExpression(std::string expr){
             cnt--;
         }
     }
-    for(int i=0;i<expr.size()-1;i++){
+    for(int i=0;i<n-1;i++){
         if(precedence(expr[i])&&precedence(expr[i+1])) return false;
         else if(expr[i]=='(') cnt++;
         else if(expr[i]==')'){
@@ -222,5 +231,6 @@ bool validExpression(std::string expr){
             cnt--;
         }
     }
+    if(precedence(expr[n-1])) return false;
     return true;
 }

@@ -2,6 +2,34 @@
 #include <string>
 #include <stack>
 using namespace std;
+std::string evalBracket(std::string&s,int &i,int n){
+    //返回的字符串
+    std::string t = "";
+    //stk代表当前还需要对应多少个右括号
+    int stk = 1;
+    i++;
+    //stk为0代表已经处理了整个括号里的字符串
+    while (i < n && stk>0) {
+        //若遇到左括号 代表其是当前括号范围里的另一个括号 增加stk
+        if (s[i] == '(') {
+            stk++;
+        }
+        //遇到右括号 其必定对应先前的某个左括号 减少stk
+        else if (s[i] == ')') {
+            //若stk为1：还有一个右括号需要对应，就是当前遇到的右括号 --- 括号处理完毕
+            if (stk == 1) {
+                i++;
+                break;
+            }
+            stk--;
+        }
+        //最外层左右括号中的所有字符都是返回值
+        t += s[i];
+        i++;
+    }
+    return t;
+}
+
 int precedence(char op) {
 	if (op == '+' || op == '-')
 		return 1;
@@ -43,28 +71,15 @@ double evaluate(string tokens) {
         std::cout<<"\n\n entering while loop : "<<tokens[i]<<std::endl;
         std::cout<<"entering switch"<<std::endl;
         switch (tokens[i]){
-        case '(':
-                valueTaken=false;
-                ops.push(tokens[i]);
-                i++;
+            case '(':{
+                std::string t = evalBracket(tokens,i,n);
+                double temp = evaluate(t);
+                std::cout<<"temp : "<<temp<<std::endl;
+                values.push(temp);
             break;
-        case ')':
-            while (!ops.empty() && ops.top() != '(') {
-                int val2 = values.top();
-                values.pop();
-                int val1 = values.top();
-                values.pop();
-                char op = ops.top();
-                ops.pop();
-                values.push(applyOp(val1, val2, op));
             }
-            i++;
-            //此处若ops不为空 则顶部元素必定为 '('
-            if (!ops.empty())
-                ops.pop();
-            break;
-        default:
-            break;
+            default:
+                break;
         }
         std::cout<<"exited switch"<<std::endl;
         std::cout<<"entering numeric"<<std::endl;
@@ -170,4 +185,16 @@ double evaluate(string tokens) {
 		values.push(applyOp(val1, val2, op));
 	}
     return (values.empty()?0:values.top());
+}
+
+bool validExpression(std::string expr){
+    int cnt =0;
+    for(char c:expr){
+        if(c=='(') cnt++;
+        else if(c==')'){
+            if(cnt<1) return false;
+            cnt--;
+        }
+    }
+    return true;
 }

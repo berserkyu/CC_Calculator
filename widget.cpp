@@ -1,6 +1,7 @@
 ﻿#include "widget.h"
 #include "ui_widget.h"
 #include <QDebug>
+#include <QMessageBox>
 #include <iostream>
 #include "calculatorAlgorithm.h"
 
@@ -108,12 +109,16 @@ void Widget::m_init()
 void Widget::on_pushButton_DENGYU_clicked()
 {
     in=ui->lineEdit->text();//获取表达式
-    std::string expr = in.toStdString();
+    try {
+        std::string expr = in.toStdString();
+        double ans = evaluate(expr);
+        std::cout<<"ans : "<<ans<<"\n";
+        expr = std::to_string(ans);
+        ui->lineEdit->setText(QString::fromStdString(expr));
+    }  catch (...) {
+        QMessageBox::warning(this,"ERROR","INVALID EXPRESSION");
+    }
 
-    double ans = evaluate(expr);
-    std::cout<<"ans : "<<ans<<"\n";
-    expr = std::to_string(ans);
-    ui->lineEdit->setText(QString::fromStdString(expr));
 }
 
 void Widget::on_pushButton_ZERO_clicked()

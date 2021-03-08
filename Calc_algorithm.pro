@@ -28,10 +28,10 @@ SOURCES += \
         widget.cpp
 
 HEADERS += \
+        calculatorAlgorithm.h \
         widget.h
 
 FORMS += \
         widget.ui
 
-RESOURCES += \
-    resource.qrc
+RESOURCES +=
